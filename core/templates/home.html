@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block title %}home/{% endblock title %}
+{% block main_content %}
+{% load static %}
+
+<section class="container rounded" >
+    <div class="row"  >
+        <div class="col-sm-2 border" style="background-color:#C0C0C0">
+
+            <img src="{% static 'css/logo.png' %}" width="50">
+            <nav class="navbar bg-dark navbar-expand-sm navbar-fixed-left">
+
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2 rounded" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-danger my-6 my-sm-6" type="submit">search</button>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+
+                            <a class="nav-link  active " href="#">
+                                home
+                            </a>
+                            <a class="nav-link  active" href="#">
+                                about
+                            </a>
+                            <a class="nav-link  active" href="#">
+                                join
+                            </a>
+                        </li>
+                    </ul>
+                </form>
+
+            </nav>
+
+        </div>
+
+        <div class="col-sm-8 border " style="background-color:#C0C0C0">
+            <h1></h1>
+            <hr>
+            <h1> <div align="centre">Vehicles List</div></h1>
+
+            <marquee>
+            <div class="jumbotron" >
+                <img src="{% static 'css/bmw 1.jpg' %}" class="img-thumbnails" style="height:300px">
+                <img src="{% static 'css/1967 charger.jpg' %}" class="img-thumbnails" style="height:300px">
+                <img src="{% static 'css/audi 2.jpg' %}" class="img-thumbnails" style="height:300px">
+            </div>
+                </marquee>
+
+            <div class="text-right mb-1">
+                <a href="{% url 'add-car' %}" type="button" class='btn btn-primary btn-sm btn-block'
+                   style="width:200px">ADD VEHICLE</a>
+
+                <a href="{% url 'list' %}" type="button" class='btn btn-primary btn-sm btn-block'
+                   style="width:200px">Display list</a>
+            </div>
+            <table class="table table-dark" style="background-color:#e3f2fd">
+
+
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Avg_s</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for car in cardata %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{car.name}}</td>
+                    <td>{{car.type}}</td>
+                    <td>{{car.avg_s}}</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="{% url 'update-car' car.id %}" class="btn btn-sm btn-info">update</a>
+                                </td>
+                                <td>
+                                    <form action="{% url 'del_car' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{car.id}}">
+                                        <input type="submit" value="delete" class="btn btn-danger btn-sm">
+                                    </form>
+                                <td>
+                                    <a href="{% url 'details' %}" class="btn btn-sm btn-warning">Details</a>
+                                </td>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</section>
+{% endblock main_content %}

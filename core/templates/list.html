@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}home/{% endblock title %}
+{% block main_content %}
+{% load static %}
+<section class="container" style=" background-color:#DCDCDC" >
+    <div class="row ">
+        <div class="col-sm- borderd">
+            <hr>
+            <h2>vehicle list</h2>
+ <table class="table table-dark">
+
+
+                <thead>
+                <tr>
+                    <th scope="col">no</th>
+                    <th scope="col">name</th>
+                    <th scope="col">type</th>
+                    <th scope="col">avg_s</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for car in cardata %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{car.name}}</td>
+                    <td>{{car.type}}</td>
+                    <td>{{car.avg_s}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+ </table>
+            </div>
+        <div class="col-sm-12">
+             <marquee>
+            <div class="jumbotron" >
+                <img src="{% static 'css/bmw 1.jpg' %}" class="img-thumbnails" style="height:300px">
+                <img src="{% static 'css/1967 charger.jpg' %}" class="img-thumbnails" style="height:300px">
+                <img src="{% static 'css/audi 2.jpg' %}" class="img-thumbnails" style="height:300px">
+            </div>
+                </marquee>
+
+        </div>
+        </div>
+    </section>
+{% endblock main_content %}

@@ -1,0 +1,31 @@
+
+{% extends 'base.html' %}
+{% block title %}home/{% endblock title %}
+{% block main_content %}
+{% load static %}
+
+<section class="container"  >
+    <div class="row">
+      <div class="col-sm-4" style="background-color:#C0C0C0">
+          <hr>
+          <h3>Add new vehicle</h3>
+          <form action="" method="POST" class="bg-light p-3 rounded">
+              {% csrf_token %}
+              {{form.as_p}}
+              <input type="submit" class="btn btn-primary">
+
+          </form>
+          <hr>
+      </div>
+        <div class="col-sm-4" style="background-color:#C0C0C0">
+              <h1> </h1>
+            <hr>
+              <h1> ADD vehicle of your choice</h1>
+              <p> Enter valid data and correct infomation about the vehicle. mention type of engine .</p>
+              <img src="{% static 'css/1967 charger.jpg' %}" width="80%">
+
+      </div>
+    </div>
+
+ </section>
+{% endblock main_content %}

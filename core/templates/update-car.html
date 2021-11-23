@@ -1,0 +1,23 @@
+
+{% extends 'base.html' %}
+{% block title %}update car info{% endblock title %}
+{% block main_content %}
+{% load static %}
+<section class="container" >
+    <div class="row">
+      <div class="col-sm-6" style="background-color:#C0C0C0">
+          <hr>
+          <h3>Update form</h3>
+          <form action="" method="POST" class="bg-light p-3 rounded">
+              {% csrf_token %}
+              {{form.as_p}}
+              <input type="submit" class="btn btn-primary">
+          </form>
+      </div>
+        <div class="col-sm-6" style="background-color:#C0C0C0">
+            <img src="{% static 'css/audi 2.jpg' %}" width="100%">
+        </div>
+    </div>
+
+ </section>
+{% endblock main_content %}
